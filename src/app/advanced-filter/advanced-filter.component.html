@@ -1,73 +1,53 @@
 <div class="px-4">
-  <div class="py-4 flex gap-4">
-    <button class="button button-outline" type="button">
-      <span class="button-label">Filter 1</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-chevron-down button-icon"
+  <div
+    class="max-h-0 overflow-hidden duration-300 data-[accordion=opened]:max-h-36"
+    data-accordion="closed"
+    #accordion
+  >
+    <div class="py-4 flex gap-4">
+      @for (filter of filters(); track $index) {
+      <button
+        class="button button-outline"
+        type="button"
+        (click)="selectFilter(filter)"
       >
-        <path d="m6 9 6 6 6-6" />
-      </svg>
-    </button>
-    <button class="button button-outline" type="button">
-      <span class="button-label">Filter 2</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-chevron-down button-icon"
+        <span class="button-label">{{ filter.name }}</span>
+        @if(filter.cards.length > 0) {
+        <span class="button-badge">{{ filter.cards.length }}</span>
+        }
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-chevron-down button-icon duration-300 {{
+            filter.selected ? 'rotate-0' : 'rotate-90'
+          }}"
+        >
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+      }
+    </div>
+    <strong class="inline-block">Select one</strong>
+    <div class="my-2 flex gap-2">
+      @for (card of cards(); track $index) {
+      <span
+        (click)="selectCard(card)"
+        [class]="
+          card.selected
+            ? 'p-1.5 bg-slate-300 rounded-lg text-sm cursor-pointer'
+            : 'p-1.5 bg-slate-100 rounded-lg text-sm cursor-pointer'
+        "
+        >{{ card.name }}</span
       >
-        <path d="m6 9 6 6 6-6" />
-      </svg>
-    </button>
-    <button class="button button-outline" type="button">
-      <span class="button-label">Filter 3</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-chevron-down button-icon"
-      >
-        <path d="m6 9 6 6 6-6" />
-      </svg>
-    </button>
-    <button class="button button-outline" type="button">
-      <span class="button-label">Filter 4</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-chevron-down button-icon"
-      >
-        <path d="m6 9 6 6 6-6" />
-      </svg>
-    </button>
+      }
+    </div>
   </div>
   <label
     class="h-10 py-4 inline-flex items-center gap-1 text-sm font-semibold peer group cursor-pointer"
@@ -88,6 +68,12 @@
     >
       <path d="m6 9 6 6 6-6" />
     </svg>
-    <input type="checkbox" name="advanced" id="advanced" class="hidden" />
+    <input
+      type="checkbox"
+      name="advanced"
+      id="advanced"
+      class="hidden"
+      (click)="toggleAccordion()"
+    />
   </label>
 </div>

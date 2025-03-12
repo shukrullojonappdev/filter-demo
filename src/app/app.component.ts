@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { AdvancedFilterComponent } from './advanced-filter/advanced-filter.component';
+import {
+  AdvancedFilterComponent,
+  ICard,
+  IFilter,
+} from './advanced-filter/advanced-filter.component';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +14,16 @@ import { AdvancedFilterComponent } from './advanced-filter/advanced-filter.compo
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'filter-demo';
+  appService = inject(AppService);
+
+  filters = this.appService.filters;
+  cards = this.appService.cards;
+
+  selectFilter(filter: IFilter) {
+    this.appService.selectFilter(filter);
+  }
+
+  selectCard(card: ICard) {
+    this.appService.selectCard(card);
+  }
 }

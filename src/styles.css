@@ -44,6 +44,7 @@
       @apply mr-2;
     }
     .button-badge {
+      @apply mr-2 bg-slate-900 text-white text-xs px-1 rounded-full;
     }
   }
   .button-outline {

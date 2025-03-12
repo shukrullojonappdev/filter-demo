@@ -3,7 +3,12 @@
     <form>
       <app-search-bar></app-search-bar>
       <hr class="h-px bg-slate-300 border-0" />
-      <app-advanced-filter></app-advanced-filter>
+      <app-advanced-filter
+        [cards]="cards"
+        [filters]="filters"
+        (selectFilterEvent)="selectFilter($event)"
+        (selectCardEvent)="selectCard($event)"
+      ></app-advanced-filter>
     </form>
   </div>
 </main>
