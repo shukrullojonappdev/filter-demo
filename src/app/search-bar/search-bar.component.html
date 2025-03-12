@@ -1,0 +1,81 @@
+<div class="py-2 px-4 flex gap-4 justify-between items-center">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="lucide lucide-circle"
+  >
+    <circle cx="12" cy="12" r="10" />
+  </svg>
+  <div class="dropdown">
+    <!-- Dropdown trigger -->
+    <label class="dropdown-trigger peer group">
+      <span class="dropdown-label">Select one</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-chevron-down dropdown-icon"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+      <input class="hidden" type="checkbox" id="selectOne" name="selectOne" />
+    </label>
+    <!-- Dropdown items -->
+    <div
+      class="dropdown-items max-h-0 overflow-y-auto duration-300 peer-has-checked:max-h-96 peer-has-checked:duration-500"
+    >
+      <ul class="*:pl-2 *:py-1 *:w-full *:hover:bg-slate-100">
+        <li>asASDdf</li>
+        <li>asdf</li>
+        <li>asdf</li>
+        <li>asdf</li>
+        <li>asdf</li>
+        <li>asdf</li>
+        <li>asdf</li>
+        <li>asdf</li>
+        <li>asdf</li>
+        <li>asdf</li>
+        <li>asdf</li>
+      </ul>
+    </div>
+  </div>
+  <hr class="w-px h-10 bg-gray-300 border-0" />
+  <label class="flex items-center gap-4 flex-1 peer group min-w-40">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-search"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+    <input
+      class="h-10 w-full pl-2 rounded-md"
+      type="text"
+      placeholder="Type a keyword"
+      id="selectOne"
+      name="selectOne"
+    />
+  </label>
+  <button class="button button-filled" type="button">Search</button>
+</div>
