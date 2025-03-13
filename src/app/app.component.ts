@@ -45,11 +45,21 @@ export class AppComponent {
     e.preventDefault();
     const result = {
       keyword: this.keyword,
-      filter0: [this.filters()[0].cards![0].name.toString()],
-      filter1: [this.filters()[1].cards![0].name.toString()],
-      filter2: [this.filters()[2].cards![0].name.toString()],
-      filter3: [this.filters()[3].cards![0].name.toString()],
-      filter4: [this.filters()[4].cards![0].name.toString()],
+      filter0: this.filters()[0].cards![0].name
+        ? [this.filters()[0].cards![0].name.toString()]
+        : [],
+      filter1: this.filters()[1].cards![0].name
+        ? [this.filters()[0].cards![1].name.toString()]
+        : [],
+      filter2: this.filters()[2].cards![0].name
+        ? [this.filters()[0].cards![2].name.toString()]
+        : [],
+      filter3: this.filters()[3].cards![0].name
+        ? [this.filters()[0].cards![3].name.toString()]
+        : [],
+      filter4: this.filters()[4].cards![0].name
+        ? [this.filters()[0].cards![4].name.toString()]
+        : [],
     };
     console.log(result);
   }
