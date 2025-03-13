@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import {
   AdvancedFilterComponent,
@@ -16,8 +16,14 @@ import { AppService } from './app.service';
 export class AppComponent {
   appService = inject(AppService);
 
+  keyword = '';
   filters = this.appService.filters;
   cards = this.appService.cards;
+  defaultFilterCards = this.appService.defaultFilterCards;
+
+  constructor() {
+    effect(() => {});
+  }
 
   selectFilter(filter: IFilter) {
     this.appService.selectFilter(filter);
@@ -25,5 +31,26 @@ export class AppComponent {
 
   selectCard(card: ICard) {
     this.appService.selectCard(card);
+  }
+
+  selectCardInDefaultFilter(card: ICard) {
+    this.appService.selectCardInDefaultFilter(card);
+  }
+
+  onInput(e: any) {
+    this.keyword = e;
+  }
+
+  sendFilter(e: any) {
+    e.preventDefault();
+    const result = {
+      keyword: this.keyword,
+      filter0: this.filters()[0].cards,
+      filter1: this.filters()[1].cards,
+      filter2: this.filters()[2].cards,
+      filter3: this.filters()[3].cards,
+      filter4: this.filters()[4].cards,
+    };
+    console.log(result);
   }
 }

@@ -5,7 +5,7 @@
     #accordion
   >
     <div class="py-4 flex gap-4">
-      @for (filter of filters(); track $index) {
+      @for (filter of filters(); track $index) { @if($index !== 0) {
       <button
         class="button button-outline"
         type="button"
@@ -32,25 +32,23 @@
           <path d="m6 9 6 6 6-6" />
         </svg>
       </button>
-      }
+      } }
     </div>
     <strong class="inline-block">Select one</strong>
     <div class="my-2 flex gap-2">
       @for (card of cards(); track $index) {
       <span
         (click)="selectCard(card)"
-        [class]="
-          card.selected
-            ? 'p-1.5 bg-slate-300 rounded-lg text-sm cursor-pointer'
-            : 'p-1.5 bg-slate-100 rounded-lg text-sm cursor-pointer'
-        "
-        >{{ card.name }}</span
-      >
+        class="p-1.5 rounded-lg text-sm cursor-pointer inline-flex items-center {{
+          card.selected ? ' bg-slate-300' : ' bg-slate-100'
+        }}"
+        >{{ card.name }}
+      </span>
       }
     </div>
   </div>
   <label
-    class="h-10 py-4 inline-flex items-center gap-1 text-sm font-semibold peer group cursor-pointer"
+    class="my-3 inline-flex items-center gap-1 text-sm font-semibold peer group cursor-pointer"
     for="advanced"
   >
     Advanced filter

@@ -1,7 +1,11 @@
 <main class="p-8 h-screen overflow-auto">
   <div class="bg-white rounded-lg drop-shadow-lg min-w-[610px]">
-    <form>
-      <app-search-bar></app-search-bar>
+    <form (submit)="sendFilter($event)">
+      <app-search-bar
+        [cards]="defaultFilterCards"
+        (selectCardEvent)="selectCardInDefaultFilter($event)"
+        (onInputEvent)="onInput($event)"
+      ></app-search-bar>
       <hr class="h-px bg-slate-300 border-0" />
       <app-advanced-filter
         [cards]="cards"

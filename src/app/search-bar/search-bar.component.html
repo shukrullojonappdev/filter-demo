@@ -16,7 +16,9 @@
   <div class="dropdown">
     <!-- Dropdown trigger -->
     <label class="dropdown-trigger peer group">
-      <span class="dropdown-label">Select one</span>
+      <span class="dropdown-label">
+        {{ currentCard.name ? currentCard.name : "Select one" }}</span
+      >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -37,15 +39,23 @@
     <div
       class="dropdown-items max-h-0 overflow-y-auto duration-300 peer-has-checked:max-h-96 peer-has-checked:duration-500"
     >
-      <ul class="*:pl-2 *:py-1 *:w-full *:hover:bg-slate-100">
-        <li>asdf</li>
-        <li>asdf</li>
-        <li>asdf</li>
+      <ul class="*:pl-4 *:py-1 *:w-full *:cursor-pointer *:hover:bg-slate-100">
+        @for (card of cards(); track $index) {
+        <li
+          (click)="selectCard(card)"
+          class="{{ card.selected ? 'bg-slate-300' : '' }}"
+        >
+          {{ card.name }}
+        </li>
+        }
       </ul>
     </div>
   </div>
   <hr class="w-px h-10 bg-gray-300 border-0" />
-  <label class="flex items-center gap-4 mx-2 flex-1 peer group min-w-40">
+  <label
+    for="keyword"
+    class="flex items-center gap-4 px-2 flex-1 peer group min-w-40 rounded-md focus-within:outline focus-within:outline-slate-500 hover:shadow"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -62,12 +72,13 @@
       <path d="m21 21-4.3-4.3" />
     </svg>
     <input
-      class="h-10 w-full pl-2 rounded-md focus:outline focus:outline-slate-500"
+      class="h-10 w-full outline-none"
       type="text"
       placeholder="Type a keyword"
-      id="selectOne"
-      name="selectOne"
+      id="keyword"
+      name="keyword"
+      (input)="onInput($event)"
     />
   </label>
-  <button class="button button-filled" type="button">Search</button>
+  <button class="button button-filled" type="submit">Search</button>
 </div>

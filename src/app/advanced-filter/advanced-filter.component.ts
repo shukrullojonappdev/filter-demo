@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 export interface IFilter {
+  id: string
   name: string;
   selected: boolean;
   cards?: ICard[];
