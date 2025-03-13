@@ -16,9 +16,10 @@
   <div id="dropdown" class="dropdown">
     <!-- Dropdown trigger -->
     <label
+      (click)="toggleDropdown()"
       id="filter"
       data-invalid="false"
-      class="dropdown-trigger peer group data-[invalid=true]:outline data-[invalid=true]:outline-red-500"
+      class="dropdown-trigger group data-[invalid=true]:outline data-[invalid=true]:outline-red-500"
     >
       <span class="dropdown-label">
         {{ currentCard.name ? currentCard.name : "Select one" }}</span
@@ -37,7 +38,6 @@
       >
         <path d="m6 9 6 6 6-6" />
       </svg>
-      <input class="hidden" type="checkbox" (change)="openDropdown()" />
     </label>
     <!-- Dropdown items -->
     <div #dropdown data-dropdown="closed" class="dropdown-items">

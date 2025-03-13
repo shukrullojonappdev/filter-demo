@@ -32,9 +32,13 @@ export class AppComponent implements OnInit {
 
       if (dropdownItems && !dropdownItems.contains(e.target)) {
         if (dropdownTrigger && dropdownTrigger.contains(e.target)) {
+          dropdownTrigger.classList.contains('is-open')
+            ? dropdownTrigger?.classList.remove('is-open')
+            : dropdownTrigger?.classList.add('is-open');
           return;
         }
         dropdownItems?.setAttribute('data-dropdown', 'closed');
+        dropdownTrigger?.classList.remove('is-open');
       }
     });
   }

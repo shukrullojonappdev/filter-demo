@@ -29,7 +29,7 @@ export class SearchBarComponent {
     this.selectCardEvent.emit(card);
   }
 
-  openDropdown() {
+  toggleDropdown() {
     if (this.dropdown) {
       this.dropdown.nativeElement.setAttribute(
         'data-dropdown',
