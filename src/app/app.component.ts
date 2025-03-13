@@ -51,19 +51,19 @@ export class AppComponent {
           : [],
       filter1:
         this.filters()[1].cards!.length > 0
-          ? [this.filters()[0].cards![1].name.toString()]
+          ? [this.filters()[1].cards![0].name.toString()]
           : [],
       filter2:
         this.filters()[2].cards!.length > 0
-          ? [this.filters()[0].cards![2].name.toString()]
+          ? [this.filters()[2].cards![0].name.toString()]
           : [],
       filter3:
         this.filters()[3].cards!.length > 0
-          ? [this.filters()[0].cards![3].name.toString()]
+          ? [this.filters()[3].cards![0].name.toString()]
           : [],
       filter4:
         this.filters()[4].cards!.length > 0
-          ? [this.filters()[0].cards![4].name.toString()]
+          ? [this.filters()[4].cards![0].name.toString()]
           : [],
     };
     console.log(result);
