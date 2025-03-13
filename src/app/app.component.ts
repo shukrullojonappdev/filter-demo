@@ -1,4 +1,4 @@
-import { Component, inject, effect } from '@angular/core';
+import { Component, inject, effect, OnInit } from '@angular/core';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import {
   AdvancedFilterComponent,
@@ -13,7 +13,7 @@ import { AppService } from './app.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   appService = inject(AppService);
 
   keyword = '';
@@ -21,10 +21,23 @@ export class AppComponent {
   cards = this.appService.cards;
   defaultFilterCards = this.appService.defaultFilterCards;
 
-  constructor() {
-    effect(() => {});
-  }
+  ngOnInit(): void {
+    // For close dropdown when click outside
+    document.body.addEventListener('click', (e: any) => {
+      const dropdown = document.getElementById('dropdown');
+      const dropdownTrigger =
+        dropdown?.getElementsByClassName('dropdown-trigger')[0];
+      const dropdownItems =
+        dropdown?.getElementsByClassName('dropdown-items')[0];
 
+      if (dropdownItems && !dropdownItems.contains(e.target)) {
+        if (dropdownTrigger && dropdownTrigger.contains(e.target)) {
+          return;
+        }
+        dropdownItems?.setAttribute('data-dropdown', 'closed');
+      }
+    });
+  }
   selectFilter(filter: IFilter) {
     this.appService.selectFilter(filter);
   }
@@ -66,6 +79,7 @@ export class AppComponent {
           ? [this.filters()[4].cards![0].name.toString()]
           : [],
     };
-    console.log(result);
+
+    if (this.appService.checkFilterValidation(result)) console.log(result);
   }
 }

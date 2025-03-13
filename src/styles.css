@@ -82,7 +82,7 @@
     }
 
     .dropdown-items {
-      @apply min-w-40 w-full max-h-0 overflow-y-auto z-50 absolute top-full right-0 mt-1 rounded-md bg-white drop-shadow-md duration-300 peer-has-checked:max-h-96 peer-has-checked:duration-500;
+      @apply min-w-40 w-full max-h-0 overflow-y-auto z-50 absolute top-full right-0 mt-1 rounded-md bg-white drop-shadow-md duration-300 data-[dropdown=opened]:max-h-96 data-[dropdown=opened]:duration-500;
     }
   }
   .dropdown-outline {

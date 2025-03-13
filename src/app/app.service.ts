@@ -114,4 +114,17 @@ export class AppService {
       });
     });
   }
+
+  checkFilterValidation(res: any) {
+    const filter = document.getElementById('filter');
+    const keyword = document.getElementById('keyword');
+
+    if (!res.keyword) keyword?.setAttribute('data-invalid', 'true');
+    else keyword?.setAttribute('data-invalid', 'false');
+    if (res.filter0.length === 0) filter?.setAttribute('data-invalid', 'true');
+    else filter?.setAttribute('data-invalid', 'false');
+
+    if (!res.keyword || res.filter0.length === 0) return false;
+    return true;
+  }
 }

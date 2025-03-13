@@ -1,4 +1,11 @@
-import { Component, EventEmitter, input, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  input,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { ICard } from '../advanced-filter/advanced-filter.component';
 import { FormsModule } from '@angular/forms';
 
@@ -12,6 +19,7 @@ export class SearchBarComponent {
   @Input() cards: any;
   @Output() selectCardEvent = new EventEmitter();
   @Output() onInputEvent = new EventEmitter();
+  @ViewChild('dropdown') dropdown: any;
 
   currentCard: any = {};
 
@@ -21,7 +29,18 @@ export class SearchBarComponent {
     this.selectCardEvent.emit(card);
   }
 
+  openDropdown() {
+    if (this.dropdown) {
+      this.dropdown.nativeElement.setAttribute(
+        'data-dropdown',
+        this.dropdown.nativeElement.getAttribute('data-dropdown') === 'closed'
+          ? 'opened'
+          : 'closed'
+      );
+    }
+  }
+
   onInput(e: any) {
-    this.onInputEvent.emit(e.target.value)
+    this.onInputEvent.emit(e.target.value);
   }
 }

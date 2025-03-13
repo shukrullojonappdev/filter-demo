@@ -13,9 +13,13 @@
   >
     <circle cx="12" cy="12" r="10" />
   </svg>
-  <div class="dropdown">
+  <div id="dropdown" class="dropdown">
     <!-- Dropdown trigger -->
-    <label class="dropdown-trigger peer group">
+    <label
+      id="filter"
+      data-invalid="false"
+      class="dropdown-trigger peer group data-[invalid=true]:outline data-[invalid=true]:outline-red-500"
+    >
       <span class="dropdown-label">
         {{ currentCard.name ? currentCard.name : "Select one" }}</span
       >
@@ -33,12 +37,10 @@
       >
         <path d="m6 9 6 6 6-6" />
       </svg>
-      <input class="hidden" type="checkbox" id="selectOne" name="selectOne" />
+      <input class="hidden" type="checkbox" (change)="openDropdown()" />
     </label>
     <!-- Dropdown items -->
-    <div
-      class="dropdown-items max-h-0 overflow-y-auto duration-300 peer-has-checked:max-h-96 peer-has-checked:duration-500"
-    >
+    <div #dropdown data-dropdown="closed" class="dropdown-items">
       <ul class="*:pl-4 *:py-1 *:w-full *:cursor-pointer *:hover:bg-slate-100">
         @for (card of cards(); track $index) {
         <li
@@ -53,8 +55,9 @@
   </div>
   <hr class="w-px h-10 bg-gray-300 border-0" />
   <label
-    for="keyword"
-    class="flex items-center gap-4 px-2 flex-1 peer group min-w-40 rounded-md focus-within:outline focus-within:outline-slate-500 hover:shadow"
+    id="keyword"
+    data-invalid="false"
+    class="flex items-center gap-4 px-2 flex-1 peer group min-w-40 rounded-md focus-within:outline focus-within:outline-slate-500 hover:shadow data-[invalid=true]:outline data-[invalid=true]:outline-red-500"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -75,10 +78,10 @@
       class="h-10 w-full outline-none"
       type="text"
       placeholder="Type a keyword"
-      id="keyword"
-      name="keyword"
       (input)="onInput($event)"
     />
   </label>
-  <button class="button button-filled" type="submit">Search</button>
+  <button class="button button-filled cursor-pointer" type="submit">
+    Search
+  </button>
 </div>
